@@ -14,8 +14,10 @@ public class Producto {
     @Column(name = "producto_id")
     private Integer idProducto;
     private String Producto;
+    private String Descripcion;
     private BigDecimal PrecioVenta;
     private String Foto;
+    private Boolean Estado;
 
     @ManyToOne
     @JoinColumn(name = "Categoria_idCategoria", nullable = false)
