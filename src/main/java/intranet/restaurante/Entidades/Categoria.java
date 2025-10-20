@@ -1,21 +1,23 @@
 package intranet.restaurante.Entidades;
 
-import java.util.List;
 import jakarta.persistence.*;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
 
 @Entity
 @Data
 @Table(name = "Categoria")
-
 public class Categoria {
-     @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_categoria")
     private Integer idCategoria;
 
-    @Column(nullable = false, length = 45)
-    private String categoria;
+    private String nombreCategoria;
 
     @OneToMany(mappedBy = "categoria")
+    @JsonIgnoreProperties("categoria")
     private List<Producto> productos;
 }

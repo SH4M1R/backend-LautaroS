@@ -2,6 +2,7 @@ package intranet.restaurante.Entidades;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.math.BigDecimal;
 
 @Entity
@@ -13,13 +14,15 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "producto_id")
     private Integer idProducto;
-    private String Producto;
-    private String Descripcion;
-    private BigDecimal PrecioVenta;
-    private String Foto;
-    private Boolean Estado;
+
+    private String producto;
+    private String descripcion;
+    private BigDecimal precioVenta;
+    private Boolean estado;
+    private String foto;
 
     @ManyToOne
     @JoinColumn(name = "Categoria_idCategoria", nullable = false)
+    @JsonIgnoreProperties("productos")
     private Categoria categoria;
 }
