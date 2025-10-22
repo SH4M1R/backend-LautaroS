@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/categorias")
-@CrossOrigin(origins = "http://localhost:9050")
+@CrossOrigin(origins = "http://localhost:5173")
 public class CategoriaControlador {
 @Autowired
     private CategoriaService categoriaService;

@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/roles")
-@CrossOrigin(origins = "http://localhost:9050")
+@CrossOrigin(origins = "http://localhost:5173")
 public class RolControlador {
 
     @Autowired
