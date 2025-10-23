@@ -31,7 +31,8 @@ public class AuthServiceImpl implements AuthService {
             throw new RuntimeException("Contraseña incorrecta");
         }
 
-        return jwtTokenProvider.generateToken(emp.getUsername(), emp.getRol());
+        String token = jwtTokenProvider.generateToken(emp.getUsername(), emp.getRol());
+        return token;
     }
 
     @Override
