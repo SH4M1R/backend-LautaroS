@@ -3,6 +3,7 @@ package intranet.restaurante.Entidades;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Data
@@ -14,5 +15,6 @@ public class Rol {
 
     private String rol;
     @OneToMany(mappedBy = "rol")
+     @JsonBackReference
     private List<Empleado> empleados;
 }
