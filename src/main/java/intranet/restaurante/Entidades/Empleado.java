@@ -1,7 +1,6 @@
 package intranet.restaurante.Entidades;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.*;
 import lombok.Data;
 
