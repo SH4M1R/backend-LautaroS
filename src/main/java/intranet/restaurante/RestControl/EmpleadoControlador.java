@@ -34,7 +34,7 @@ public class EmpleadoControlador {
         return empleadoService.obtenerEmpleadoPorId(id);
     }
 
-    @PostMapping(consumes = "application/json", produces = "application/json")
+    @PostMapping 
     public Empleado crearEmpleado(@RequestBody Empleado empleado) {
         Rol rol = rolService.obtenerRolPorId(empleado.getRol().getIdRol());
         empleado.setRol(rol);
@@ -64,7 +64,7 @@ public class EmpleadoControlador {
             error.put("message", "Usuario o contraseña incorrectos.");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
         }
-        empleadoAutenticado.setContrasena(null);
+        empleadoAutenticado.setContrasena(null); 
         return ResponseEntity.ok(empleadoAutenticado);
     }
 }

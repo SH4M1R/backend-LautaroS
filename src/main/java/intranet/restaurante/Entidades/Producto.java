@@ -19,7 +19,6 @@ public class Producto {
     private String descripcion;
     private BigDecimal precioVenta;
     private Boolean estado;
-    private String foto;
 
     @ManyToOne
     @JoinColumn(name = "Categoria_idCategoria", nullable = false)
