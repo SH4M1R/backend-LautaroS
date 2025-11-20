@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Data
 @Table(name = "DetalleVenta")
@@ -22,6 +24,7 @@ public class DetalleVenta {
 
     @ManyToOne
     @JoinColumn(name = "Venta_idVenta")
+    @JsonIgnoreProperties("detalles")
     private Venta venta;
 
     @ManyToOne

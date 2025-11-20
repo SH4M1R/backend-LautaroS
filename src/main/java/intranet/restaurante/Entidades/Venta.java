@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Data
 @Table(name = "Venta")
@@ -26,5 +28,6 @@ public class Venta {
     private Cliente cliente;
 
     @OneToMany(mappedBy = "venta")
+    @JsonIgnoreProperties("venta")
     private List<DetalleVenta> detalles;
 }
