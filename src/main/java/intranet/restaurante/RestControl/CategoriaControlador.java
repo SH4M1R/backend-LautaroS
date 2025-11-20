@@ -10,7 +10,8 @@ import java.util.List;
 @RequestMapping("/api/categorias")
 @CrossOrigin(origins = "http://localhost:9050")
 public class CategoriaControlador {
-@Autowired
+
+    @Autowired
     private CategoriaService categoriaService;
 
     @GetMapping
