@@ -27,6 +27,9 @@ public class Venta {
     @JoinColumn(name = "Cliente_idCliente")
     private Cliente cliente;
 
+    @Lob
+    private byte[] boleta;
+
     @OneToMany(mappedBy = "venta")
     @JsonIgnoreProperties("venta")
     private List<DetalleVenta> detalles;

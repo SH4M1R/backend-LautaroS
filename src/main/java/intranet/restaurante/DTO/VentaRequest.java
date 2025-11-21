@@ -6,8 +6,16 @@ import java.util.List;
 
 @Data
 public class VentaRequest {
-    private BigDecimal total;
+     private BigDecimal total;
+    private BigDecimal montoPagado;
+    private BigDecimal vuelto;
+    private String metodoPago;
+
+    private String codigoIzipay;
+    private String numeroTarjeta;
+
     private ClienteRequest cliente;
+
     private List<DetalleProductoRequest> detalles;
 
     @Data
