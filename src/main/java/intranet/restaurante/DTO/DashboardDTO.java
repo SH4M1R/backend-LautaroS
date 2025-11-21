@@ -11,10 +11,17 @@ public class DashboardDTO {
     private Long platosExistentes;
     private Long clientes;
     private List<VentasDia> ventasSemanal;
+    private List<PlatoVendido> platosMasVendidos;
 
     @Data
     public static class VentasDia {
         private String dia;
         private BigDecimal total;
+    }
+
+    @Data
+    public static class PlatoVendido {
+        private String nombre;
+        private Long cantidad;
     }
 }

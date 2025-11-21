@@ -21,6 +21,7 @@ public class DetalleVenta {
     private String codigoIzipay;
     private String numeroTarjeta;
     private String metodoPago;
+    private Long cantidad;
 
     @ManyToOne
     @JoinColumn(name = "Venta_idVenta")

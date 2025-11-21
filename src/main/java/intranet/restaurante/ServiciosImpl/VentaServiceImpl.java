@@ -49,6 +49,7 @@ public class VentaServiceImpl {
             DetalleVenta detalle = new DetalleVenta();
             detalle.setVenta(venta);
             detalle.setProducto(producto);
+            detalle.setCantidad(det.getCantidad()); // ahora sí funciona
             detalle.setSubtotal(det.getSubtotal());
             detalle.setMetodoPago(det.getMetodoPago());
             detalle.setMontoPagado(det.getMontoPagado());

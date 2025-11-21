@@ -19,6 +19,7 @@ public class VentaRequest {
         private BigDecimal montoPagado;
         private BigDecimal vuelto;
         private String codigoIzipay;
+        private Long cantidad;
         private String numeroTarjeta;
     }
 

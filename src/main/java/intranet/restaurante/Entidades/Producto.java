@@ -19,6 +19,7 @@ public class Producto {
     private String descripcion;
     private BigDecimal precioVenta;
     private Boolean estado;
+    private Long cantidad;
     private String imagen;
 
     @ManyToOne
