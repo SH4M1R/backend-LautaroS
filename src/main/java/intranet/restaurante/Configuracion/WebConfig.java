@@ -21,7 +21,7 @@ public class WebConfig implements WebMvcConfigurer {
                 registry.addMapping("/**")
                         .allowedOrigins(
                                 "http://localhost:5173",
-                                "https://frontend-lautaros.onrender.com"  // Reemplaza si tu dominio cambia
+                                "https://frontend-lautaros-hm1n.onrender.com"  // Reemplaza si tu dominio cambia
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
