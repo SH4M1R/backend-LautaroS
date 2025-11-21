@@ -10,16 +10,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+     private static final String UPLOAD_DIR_RENDER = "file:/opt/render/project/src/upload/";
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
+
             @Override
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins(
-                                "http://localhost:5173", // Vite local
-                                "https://tu-frontend.onrender.com" // ← remplaza este cuando tengas el dominio
-                )
+                                "http://localhost:5173",
+                                "https://frontend-lautaros.onrender.com"  // Reemplaza si tu dominio cambia
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
@@ -27,8 +30,10 @@ public class WebConfig implements WebMvcConfigurer {
 
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+                // Servir archivos subidos desde Render
                 registry.addResourceHandler("/upload/**")
-                        .addResourceLocations("classpath:/static/upload/");
+                        .addResourceLocations(UPLOAD_DIR_RENDER);
             }
         };
     }

@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 @Service
 public class UploadService {
 
-    private final String uploadDir = "src/main/resources/static/upload/";
+    private final String uploadDir = "/opt/render/project/src/upload/";
 
     public String saveUpload(MultipartFile file) {
         try {
@@ -31,3 +31,4 @@ public class UploadService {
         }
     }
 }
+
