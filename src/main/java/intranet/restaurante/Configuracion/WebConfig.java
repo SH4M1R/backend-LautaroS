@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebConfig implements WebMvcConfigurer{
+public class WebConfig implements WebMvcConfigurer {
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -16,15 +16,19 @@ public class WebConfig implements WebMvcConfigurer{
             @Override
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:9050")
+                        .allowedOrigins(
+                                "http://localhost:5173", // Vite local
+                                "https://tu-frontend.onrender.com" // ← remplaza este cuando tengas el dominio
+                )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
             }
+
             @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry){
-        registry.addResourceHandler("/upload/**")
-                .addResourceLocations("classpath:/static/upload/");
+            public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                registry.addResourceHandler("/upload/**")
+                        .addResourceLocations("classpath:/static/upload/");
             }
         };
     }
