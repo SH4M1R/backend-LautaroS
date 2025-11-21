@@ -12,20 +12,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Data
 @Table(name = "Venta")
 public class Venta {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idVenta")
     private Integer idVenta;
-    
+
     private BigDecimal total;
+
+    @Column(name = "fecha_venta")
     private LocalDateTime fechaVenta;
 
     @ManyToOne
-    @JoinColumn(name = "Empleado_idEmpleado")
+    @JoinColumn(name = "Empleado_id_empleado")
     private Empleado empleado;
 
     @ManyToOne
-    @JoinColumn(name = "Cliente_idCliente")
+    @JoinColumn(name = "Cliente_id_cliente")
     private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "caja_id") // Relación con Caja
+    private Caja caja;
 
     @Lob
     private byte[] boleta;
