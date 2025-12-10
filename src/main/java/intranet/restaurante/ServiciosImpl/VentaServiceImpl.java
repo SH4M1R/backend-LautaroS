@@ -45,20 +45,15 @@ public class VentaServiceImpl implements VentaService {
         Cliente cliente = clienteService.obtenerOCrearCliente(request.getCliente());
 
         Venta venta = new Venta();
-        venta.setCliente(cliente);
-        venta.setTotal(request.getTotal());
-        venta.setFechaVenta(LocalDateTime.now());
+            venta.setCliente(cliente);
+            venta.setTotal(request.getTotal());
+            venta.setFechaVenta(LocalDateTime.now());
 
-        // Asignar la caja desde el request
-        if (request.getCaja() != null && request.getCaja().getIdCaja() != null) {
-            Caja caja = cajaDAO.findById(request.getCaja().getIdCaja())
-                    .orElseThrow(() -> new RuntimeException("Caja no encontrada: " + request.getCaja().getIdCaja()));
+            Caja caja = cajaDAO.findById(1)
+                .orElseGet(() -> cajaDAO.findAll().stream().findFirst()
+                    .orElseThrow(() -> new RuntimeException("No hay cajas disponibles")));
             venta.setCaja(caja);
-        } else {
-            throw new RuntimeException("No se especificó la caja para la venta");
-        }
-
-        venta = ventaDAO.save(venta);
+            venta = ventaDAO.save(venta);
 
         if (request.getDetalles() != null) {
             for (VentaRequest.DetalleProductoRequest det : request.getDetalles()) {
