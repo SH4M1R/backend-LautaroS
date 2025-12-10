@@ -10,13 +10,16 @@ public class VentaRequest {
     private BigDecimal montoPagado;
     private BigDecimal vuelto;
     private String metodoPago;
-
+    private CajaRequest caja;
     private String codigoIzipay;
     private String numeroTarjeta;
-
     private ClienteRequest cliente;
-
     private List<DetalleProductoRequest> detalles;
+
+    @Data
+    public static class CajaRequest {
+        private Integer idCaja;
+    }
 
     @Data
     public static class DetalleProductoRequest {
