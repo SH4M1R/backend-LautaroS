@@ -32,7 +32,7 @@ public class Venta {
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "caja_id") // Relación con Caja
+    @JoinColumn(name = "caja_id_caja") // Relación con Caja
     private Caja caja;
 
     @Lob
