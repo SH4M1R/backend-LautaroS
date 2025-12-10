@@ -17,6 +17,7 @@ import intranet.restaurante.Entidades.Venta;
 import intranet.restaurante.Servicios.ClienteService;
 import intranet.restaurante.Servicios.VentaService;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -45,15 +46,22 @@ public class VentaServiceImpl implements VentaService {
         Cliente cliente = clienteService.obtenerOCrearCliente(request.getCliente());
 
         Venta venta = new Venta();
-            venta.setCliente(cliente);
-            venta.setTotal(request.getTotal());
-            venta.setFechaVenta(LocalDateTime.now());
+        venta.setCliente(cliente);
+        venta.setTotal(request.getTotal());
+        venta.setFechaVenta(LocalDateTime.now());
 
-            Caja caja = cajaDAO.findById(1)
-                .orElseGet(() -> cajaDAO.findAll().stream().findFirst()
-                    .orElseThrow(() -> new RuntimeException("No hay cajas disponibles")));
-            venta.setCaja(caja);
-            venta = ventaDAO.save(venta);
+        // ============================
+        // 🔥 Caja del día (FIX REAL)
+        // ============================
+        LocalDateTime inicioHoy = LocalDate.now().atStartOfDay();
+        LocalDateTime finHoy = inicioHoy.plusDays(1);
+
+        Caja caja = cajaDAO.findByFechaAperturaBetween(inicioHoy, finHoy)
+                .orElseThrow(() -> new RuntimeException("No hay caja abierta hoy. Por favor abre una caja."));
+
+        venta.setCaja(caja);
+
+        venta = ventaDAO.save(venta);
 
         if (request.getDetalles() != null) {
             for (VentaRequest.DetalleProductoRequest det : request.getDetalles()) {
@@ -79,10 +87,9 @@ public class VentaServiceImpl implements VentaService {
     }
 
     public Venta obtenerPorId(Integer id) {
-    return ventaDAO.findById(id)
-            .orElseThrow(() -> new RuntimeException("Venta no encontrada: " + id));
-}
-
+        return ventaDAO.findById(id)
+                .orElseThrow(() -> new RuntimeException("Venta no encontrada: " + id));
+    }
 
     @Override
     public List<Venta> listarTodas() {
